@@ -6,6 +6,9 @@
         <span class="title">
           Welcome to your new project!
         </span>
+        <span class="state-main">{{ main }}</span>
+        <button @click="increase(2)">+</button>
+        <button @click="decrease">-</button>
         <system-information></system-information>
       </div>
 
@@ -31,14 +34,27 @@
 
 <script>
   import SystemInformation from './LandingPage/SystemInformation'
+  import { mapState, mapMutations } from 'vuex'
 
   export default {
     name: 'landing-page',
     components: { SystemInformation },
+    computed: {
+      ...mapState({
+        main: state => state.Counter.main
+      })
+    },
     methods: {
       open (link) {
         this.$electron.shell.openExternal(link)
-      }
+      },
+      ...mapMutations({
+        increase: 'INCREMENT_MAIN_COUNTER',
+        decrease: 'DECREMENT_MAIN_COUNTER'
+      })
+    },
+    created () {
+      console.log(this.$store)
     }
   }
 </script>
