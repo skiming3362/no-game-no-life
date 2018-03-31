@@ -32,16 +32,22 @@
   </div>
 </template>
 
-<script>
-  import SystemInformation from './LandingPage/SystemInformation'
+<script lang="ts" >
+  import SystemInformation from './LandingPage/SystemInformation.vue'
   import { mapState, mapMutations } from 'vuex'
+
+  interface State {
+    Counter: {
+      main: number
+    }
+  }
 
   export default {
     name: 'landing-page',
     components: { SystemInformation },
     computed: {
       ...mapState({
-        main: state => state.Counter.main
+        main: (state: State) => state.Counter.main
       })
     },
     methods: {
@@ -54,7 +60,6 @@
       })
     },
     created () {
-      console.log(this.$store)
     }
   }
 </script>
