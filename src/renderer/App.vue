@@ -12,4 +12,8 @@
 
 <style>
   /* CSS */
+  * {
+    user-select: none;
+    cursor: default;
+  }
 </style>
